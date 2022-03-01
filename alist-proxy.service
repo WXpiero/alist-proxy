@@ -1,0 +1,16 @@
+[Unit]
+Description=alist-proxy
+After=network.target
+
+[Service]
+User=root
+Type=simple
+Environment=GOPATH=/root/go
+WorkingDirectory=/opt/alist-proxy
+#ExecStart=/usr/bin/go run /opt/alist-proxy/alist-proxy.go
+ExecStart=/usr/bin/go run /opt/alist-proxy/alist-proxy.go -host http://IPaddress:port -token TOKEN
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
